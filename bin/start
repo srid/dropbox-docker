@@ -7,8 +7,6 @@ NGINXDIR=/usr/share/nginx/html
 nginx
 
 while true; do
-    inotifywait $DIR/data/mycode
-    set +e
-    pelican $DIR/data/mycode -o $NGINXDIR
-    set -e
+    inotifywait -r $DIR/data/mycode
+    pelican $DIR/data/mycode -o $NGINXDIR || true
 done
