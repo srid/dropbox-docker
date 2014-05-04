@@ -6,15 +6,22 @@ HTTPPORT := 8080
 
 IMAGE := syncweb
 PWD := $(shell pwd)
-RUNARGS := --rm -v ${PWD}/data:/btsync/data:rw -p ${BTSYNCWEBPORT}:8888 -p ${HTTPPORT}:80
+RUNARGS := -v ${PWD}/data:/btsync/data:rw -p ${BTSYNCWEBPORT}:8888 -p ${HTTPPORT}:80
 
 all:
 	sudo ${DOCKER} build -t ${IMAGE} .
 
+run:
+	sudo ${DOCKER} run -d --name syncweb_run ${RUNARGS} ${IMAGE}
+	sudo ${DOCKER} logs -f syncweb_run
+stop:
+	sudo ${DOCKER} kill syncweb_run || true
+	sudo ${DOCKER} rm -v syncweb_run || true
+
 # inspect the image
 debug:
-	sudo ${DOCKER} run -t -i ${RUNARGS} ${IMAGE} bash
-# ./btsync --nodaemon --config data/config.json
+	sudo ${DOCKER} run --rm --name syncweb_debug -t -i ${RUNARGS} ${IMAGE} bash
+
 
 clean:
 	sudo ${DOCKER} rmi ${IMAGE}

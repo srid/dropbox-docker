@@ -13,3 +13,4 @@ VOLUME ["/btsync/data"]
 ADD bin /btsync/bin
 ENV PATH /btsync/bin:$PATH
 WORKDIR /btsync
+CMD ["start"]
