@@ -3,10 +3,15 @@
 DIR=/btsync/
 $DIR/btsync --config $DIR/data/config.json
 
+PELICAN_INPUT=$DIR/data/mycode/content
+PELICAN_OUTPUT=$DIR/data/mycode/output
 NGINXDIR=/usr/share/nginx/html
+rm -rf $NGINXDIR
+ln -s $PELICAN_OUTPUT $NGINXDIR
 nginx
 
+cd $DIR/data/mycode
 while true; do
     inotifywait -r $DIR/data/mycode
-    pelican $DIR/data/mycode -o $NGINXDIR || true
+    make html || true
 done
