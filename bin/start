@@ -3,3 +3,9 @@
 DIR=/btsync/
 $DIR/btsync --config $DIR/data/config.json
 
+while true; do
+    inotifywait $DIR/data/mycode
+    set +e
+    pelican $DIR/data/mycode
+    set -e
+done
