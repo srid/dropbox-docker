@@ -1,0 +1,5 @@
+#!/bin/sh -ex
+
+DIR=/btsync/
+$DIR/btsync --config $DIR/data/config.json
+
