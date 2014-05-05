@@ -1,17 +1,24 @@
 #!/bin/sh -ex
 
-DIR=/btsync/
-$DIR/btsync --config $DIR/data/config.json
+ln -sf /data-init/.dropbox-dist .
+ln -sf /data-init/bin .
 
-PELICAN_INPUT=$DIR/data/mycode/content
-PELICAN_OUTPUT=$DIR/data/mycode/output
+# setup nginx
+PELICAN_INPUT=~/Dropbox/Pelican/content
+PELICAN_OUTPUT=~/Dropbox/Pelican/output
 NGINXDIR=/usr/share/nginx/html
 rm -rf $NGINXDIR
 ln -s $PELICAN_OUTPUT $NGINXDIR
+chmod a+rx ~/Dropbox/  # yup, for nginx
 nginx
 
-cd $DIR/data/mycode
+
+# Launch dropbox
+~/.dropbox-dist/dropboxd &
+
+
+cd ~/Dropbox/Pelican
 while true; do
-    inotifywait -r $DIR/data/mycode
+    inotifywait -r `pwd`/content
     make html || true
 done
