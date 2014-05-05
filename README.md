@@ -32,7 +32,7 @@ make run
 ```
 
 At this point, you can access the pelican static site as
-http://<ip>:8080. The port 8080 can be configured in Makefile.
+http://IPADDR:8080. The port 8080 can be configured in Makefile.
 
 ## Experiment log
 
@@ -46,4 +46,4 @@ Dropbox is not perfect either; if an attacker gains access to the server instanc
 
 There is however a workaround, which is what I'm exploring: create a secondary Dropbox account and share the particular folder to that account. This way, if the server instance is compromised, only that particular folder will be vulnerable.
 
-An unintended advantage of using Dropbox is that sync feelings must more faster (instantaneous) compared to btsync.
+An unintended advantage of using Dropbox is that sync feels much faster (instantaneous) compared to btsync.
