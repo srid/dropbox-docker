@@ -3,13 +3,16 @@
 ln -sf /data-init/.dropbox-dist .
 ln -sf /data-init/bin .
 
-# setup nginx
-PELICAN_INPUT=~/Dropbox/Pelican/content
-PELICAN_OUTPUT=~/Dropbox/Pelican/output
+DROPBOX_DIR=~/Dropbox/
+PELICAN_DIR=$DROPBOX_DIR/$PELICAN_PATH
+PELICAN_INPUT=$PELICAN_DIR/content
+PELICAN_OUTPUT=$PELICAN_DIR/output
+
+# setup and launch nginx
 NGINXDIR=/usr/share/nginx/html
 rm -rf $NGINXDIR
 ln -s $PELICAN_OUTPUT $NGINXDIR
-chmod a+rx ~/Dropbox/  # yup, for nginx
+chmod a+rx ~/Dropbox/  # so that nginx can access
 nginx
 
 
@@ -17,6 +20,7 @@ nginx
 ~/.dropbox-dist/dropboxd &
 
 
+# Monitor changes, and invoke pelican
 cd ~/Dropbox/Pelican
 while true; do
     inotifywait -r `pwd`/content

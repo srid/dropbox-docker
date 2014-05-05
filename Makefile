@@ -18,8 +18,8 @@ stop:
 	sudo ${DOCKER} rm -v syncweb_run || true
 
 # inspect the image
-debug:
-	sudo ${DOCKER} run --rm --name syncweb_debug -t -i ${RUNARGS} ${IMAGE} bash
+shell:
+	sudo ${DOCKER} run --rm --name syncweb_shell -t -i ${RUNARGS} ${IMAGE} bash
 
 
 clean:

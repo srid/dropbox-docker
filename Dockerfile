@@ -15,5 +15,7 @@ RUN cd /data-init/bin && \
     ln -s `pwd`/dropbox.py d
 
 ENV PATH /data-init/bin:$PATH
+ENV PELICAN_PATH Pelican
+
 WORKDIR /data
 CMD ["/data-init/bin/start"]
