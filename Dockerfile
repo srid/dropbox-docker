@@ -1,15 +1,19 @@
 FROM ubuntu
 
-RUN apt-get -qy install wget
-RUN mkdir /btsync && \
-	cd btsync && \
-	wget -O - http://download-lb.utorrent.com/endpoint/btsync/os/linux-x64/track/stable | tar xzf -
+RUN apt-get -qy install wget python-pelican inotify-tools nginx-light make
 
-RUN apt-get -qy install python-pelican
-RUN apt-get -qy install inotify-tools nginx-light make
+ENV HOME /data
+RUN mkdir /data /data-init && \
+	cd data-init && \
+	wget -q -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
 
-VOLUME ["/btsync/data"]
-ADD bin /btsync/bin
-ENV PATH /btsync/bin:$PATH
-WORKDIR /btsync
-CMD ["start"]
+VOLUME ["/data"]
+ADD bin /data-init/bin
+RUN cd /data-init/bin && \
+    wget -q "https://www.dropbox.com/download?dl=packages/dropbox.py" -O dropbox.py && \
+    chmod a+x dropbox.py && \
+    ln -s `pwd`/dropbox.py d
+
+ENV PATH /data-init/bin:$PATH
+WORKDIR /data
+CMD ["/data-init/bin/start"]

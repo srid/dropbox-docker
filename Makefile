@@ -1,12 +1,11 @@
 # Configure these:
 DOCKER := "/usr/bin/docker.io"  # Using Ubuntu 14.04's docker.io package
-BTSYNCWEBPORT := 8888
 HTTPPORT := 8080
 # End of user configuration.
 
 IMAGE := syncweb
 PWD := $(shell pwd)
-RUNARGS := -v ${PWD}/data:/btsync/data:rw -p ${BTSYNCWEBPORT}:8888 -p ${HTTPPORT}:80
+RUNARGS := -v ${PWD}/data:/data:rw -p ${HTTPPORT}:80
 
 all:
 	sudo ${DOCKER} build -t ${IMAGE} .
