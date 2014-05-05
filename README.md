@@ -1,6 +1,8 @@
 # syncweb
 
-Experiments in dropbox, docker, static site hosting
+Experiments in dropbox, docker, static site hosting.
+
+Aiming to make Dropbox based static blog hosting seamless.
 
 ## Getting started
 
@@ -31,8 +33,7 @@ make run
 
 ```
 
-At this point, you can access the pelican static site as
-http://IPADDR:8080. The port 8080 can be configured in Makefile.
+At this point, you can access the [Pelican](http://blog.getpelican.com/) static site as http://IPADDR:8080. The port 8080 can be configured in Makefile.
 
 ## Experiment log
 
