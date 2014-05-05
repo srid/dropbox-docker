@@ -18,4 +18,4 @@ ENV PATH /data-init/bin:$PATH
 ENV PELICAN_PATH Pelican
 
 WORKDIR /data
-CMD ["/data-init/bin/start"]
+CMD ["/data-init/bin/syncweb-start"]

@@ -1,0 +1,8 @@
+#!/bin/sh -ex
+
+# Monitor changes, and invoke pelican
+cd ~/Dropbox/Pelican
+while true; do
+    inotifywait -r -e create -e move -e delete -e close_write -e attrib --exclude .dropbox `pwd`
+    make html || true
+done

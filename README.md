@@ -23,10 +23,10 @@ make
 # initial one-time setup: add ourself as a computer to dropbox
 make shell
 ...
-root@3951be1e6b1f:~# start
-# after you run 'start' in the container, Dropbox will prompt you to
-# navigate to a URL and authorize this container^Wcomputer. once that
-# is done, exit from shell and:
+root@3951be1e6b1f:~# syncweb-start
+# after you run 'syncweb-start' in the container, Dropbox will prompt
+# you to navigate to a URL and authorize this
+# container^Wcomputer. once that is done, exit from shell and:
 
 # start the container
 make run

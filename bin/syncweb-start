@@ -6,7 +6,7 @@ ln -sf /data-init/bin .
 DROPBOX_DIR=~/Dropbox/
 PELICAN_DIR=$DROPBOX_DIR/$PELICAN_PATH
 PELICAN_INPUT=$PELICAN_DIR/content
-PELICAN_OUTPUT=$PELICAN_DIR/output
+PELICAN_OUTPUT=$DROPBOX_DIR/PelicanOutput
 
 # setup and launch nginx
 NGINXDIR=/usr/share/nginx/html
@@ -20,9 +20,5 @@ nginx
 ~/.dropbox-dist/dropboxd &
 
 
-# Monitor changes, and invoke pelican
-cd ~/Dropbox/Pelican
-while true; do
-    inotifywait -r `pwd`/content
-    make html || true
-done
+syncweb-watcher
+
