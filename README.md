@@ -1,39 +1,29 @@
-# syncweb
+# dropbox-docker
 
-Experiments in dropbox, docker, static site hosting.
+A docker image for writing Dropbox-based server apps.
 
-Aiming to make Dropbox based static blog hosting seamless.
+This image provides a single useful feature called post-update hooks. Your app image can provide this hook, which gets run whenever the files under Dropbox is updated. See example/pelican - a static site generator seamlessly using Dropbox.
 
-## Getting started
+## quick start
 
-Get yourself a Ubuntu 14.04 VM, followed by:
+Get yourself a Ubuntu 14.04 machine, and then:
 
-```
+```bash
 # install docker
 apt-get -y install docker.io make
 
-# add the path to your pelican site directory in Dockerfile as
-# PELICAN_PATH. for example, if your pelican dir exists as
-# ~/Dropbox/mysites/myblog, set PELICAN_PATH to "mysites/myblog"
-vi Dockerfile
-
-# build the image
+# make image
 make
 
-# initial one-time setup: add ourself as a computer to dropbox
+# first-time setup; add container to your docker account
 make shell
-...
-root@3951be1e6b1f:~# syncweb-start
-# after you run 'syncweb-start' in the container, Dropbox will prompt
-# you to navigate to a URL and authorize this
-# container^Wcomputer. once that is done, exit from shell and:
+root@3951be1e6b1f:~# launch setup
+... go to the URL
+... Ctrl-c after "This computer is now linked to Dropbox."
 
-# start the container
+# run forever
 make run
-
 ```
-
-At this point, you can access the [Pelican](http://blog.getpelican.com/) static site as http://IPADDR:8080. The port 8080 can be configured in Makefile.
 
 ## Experiment log
 

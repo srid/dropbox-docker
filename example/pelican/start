@@ -1,0 +1,18 @@
+#!/bin/bash -ex
+
+# Start nginx
+
+PELICAN_INPUT=$PELICAN_DIR/content
+PELICAN_OUTPUT=${PELICAN_DIR}.output
+
+# setup and launch nginx
+if pgrep nginx >/dev/null 2>&1; then
+    echo "Nginx already running"
+else
+    NGINXDIR=/usr/share/nginx/html
+    rm -rf $NGINXDIR
+    mkdir -p $PELICAN_OUTPUT
+    ln -s $PELICAN_OUTPUT $NGINXDIR
+    nginx
+fi
+
