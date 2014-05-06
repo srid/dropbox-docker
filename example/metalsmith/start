@@ -1,0 +1,17 @@
+#!/bin/bash -ex
+
+# Start nginx
+
+METALSMITH_OUTPUT=${METALSMITH_DIR}/build
+
+# setup and launch nginx
+if pgrep nginx >/dev/null 2>&1; then
+    echo "Nginx already running"
+else
+    NGINXDIR=/usr/share/nginx/html
+    rm -rf $NGINXDIR
+    mkdir -p ${METALSMITH_OUTPUT}
+    ln -s ${METALSMITH_OUTPUT} $NGINXDIR
+    nginx
+fi
+
