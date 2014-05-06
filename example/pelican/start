@@ -2,13 +2,17 @@
 
 # Start nginx
 
-PELICAN_DIR=$DROPBOX_DIR/$PELICAN_PATH
 PELICAN_INPUT=$PELICAN_DIR/content
-PELICAN_OUTPUT=$DROPBOX_DIR/${PELICAN_PATH}.output
+PELICAN_OUTPUT=${PELICAN_DIR}.output
 
 # setup and launch nginx
-NGINXDIR=/usr/share/nginx/html
-rm -rf $NGINXDIR
-ln -s $PELICAN_OUTPUT $NGINXDIR
-nginx
+if pgrep nginx >/dev/null 2>&1; then
+    echo "Nginx already running"
+else
+    NGINXDIR=/usr/share/nginx/html
+    rm -rf $NGINXDIR
+    mkdir -p $PELICAN_OUTPUT
+    ln -s $PELICAN_OUTPUT $NGINXDIR
+    nginx
+fi
 
