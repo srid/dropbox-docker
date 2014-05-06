@@ -27,7 +27,7 @@ else
 	    -e create -e move -e delete -e close_write -e attrib \
 	    --exclude .dropbox `pwd`
 	
-	$DROPBOX_POST_UPDATE_COMMAND
+	$DROPBOX_POST_UPDATE_COMMAND || true
     done
 fi
 
