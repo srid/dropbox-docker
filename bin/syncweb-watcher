@@ -4,5 +4,5 @@
 cd ~/Dropbox/Pelican
 while true; do
     inotifywait -r -e create -e move -e delete -e close_write -e attrib --exclude .dropbox `pwd`
-    make html || true
+    make dropbox-updated || true
 done
