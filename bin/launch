@@ -1,0 +1,32 @@
+#!/bin/bash -ex
+
+cd ~
+ln -sf /image/.dropbox-dist .
+ln -sf /image/bin .
+
+echo $1
+if [[ "$1" == "setup" ]]; then
+    mkdir -p ~/Dropbox; chmod a+x ~/Dropbox  # Dropbox's fault
+    ~/.dropbox-dist/dropboxd
+    exit
+else
+    d start
+    if [[ -f /image/hooks/start ]]; then
+	/image/hooks/start
+    fi
+fi
+
+if [[ "$DROPBOX_UPDATED_COMMAND" == "" ]]; then
+    echo "No watcher setup; sleeing forever."
+    sleep infinity
+else
+    echo "Watching..."
+    while true; do
+	inotifywait -r \
+	    -e create -e move -e delete -e close_write -e attrib \
+	    --exclude .dropbox $DROPBOX_WATCH_DIR
+	
+	$DROPBOX_POST_UPDATE_COMMAND || true
+    done
+fi
+

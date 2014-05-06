@@ -1,0 +1,14 @@
+#!/bin/bash -ex
+
+# Start nginx
+
+PELICAN_DIR=$DROPBOX_DIR/$PELICAN_PATH
+PELICAN_INPUT=$PELICAN_DIR/content
+PELICAN_OUTPUT=$DROPBOX_DIR/${PELICAN_PATH}.output
+
+# setup and launch nginx
+NGINXDIR=/usr/share/nginx/html
+rm -rf $NGINXDIR
+ln -s $PELICAN_OUTPUT $NGINXDIR
+nginx
+

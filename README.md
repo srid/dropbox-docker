@@ -1,3 +1,18 @@
+**OUTDATED**
+
+# quick start
+
+```bash
+# make image
+make
+
+# first-time setup; add container to your docker account
+d run ... launch setup
+... Ctrl-c after "This computer is now linked to Dropbox."
+
+# run forever
+d run ... 
+
 # syncweb
 
 Experiments in dropbox, docker, static site hosting.
