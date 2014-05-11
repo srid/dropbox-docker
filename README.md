@@ -2,7 +2,7 @@
 
 A docker image for writing Dropbox-based server apps.
 
-This image provides a single useful feature called post-update hooks. Your app image can provide this hook, which gets run whenever the files under Dropbox is updated. See example/pelican - a static site generator seamlessly using Dropbox.
+This image provides a single useful feature called post-update hooks. Your app image can provide this hook, which gets run whenever the files under Dropbox is updated. See example/nanoc - a static site generator seamlessly using Dropbox.
 
 ## quick start
 
