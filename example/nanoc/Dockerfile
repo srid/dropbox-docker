@@ -3,7 +3,9 @@ FROM srid/dropbox
 RUN apt-get -qy install nginx-light python-pygments
 RUN apt-get -qy install ruby ruby-dev
 RUN gem install nanoc
-ENV NANOC_EXTENSIONS kramdown pygments.rb nokogiri
+ENV NANOC_EXTENSIONS kramdown pygments.rb
+
+RUN apt-get -qy install ruby-nokogiri
 RUN gem install ${NANOC_EXTENSIONS}
 
 ENV NANOC_DIR ${DROPBOX_DIR}/nanoc
