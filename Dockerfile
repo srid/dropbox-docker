@@ -1,10 +1,10 @@
 FROM ubuntu
 
-RUN apt-get update
-RUN apt-get dist-upgrade -yq
-RUN apt-get -qy install wget python-minimal inotify-tools make
-RUN apt-get clean
-RUN rm -rf /var/lib/apt/lists/*
+RUN apt-get update && \
+	apt-get dist-upgrade -yq && \
+	apt-get -qy install wget python-minimal inotify-tools make && \
+	apt-get clean && \
+	rm -rf /var/lib/apt/lists/*
 
 ENV HOME /data
 ENV WGET wget --no-check-certificate -q
